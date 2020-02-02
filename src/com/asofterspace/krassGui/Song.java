@@ -4,7 +4,7 @@
  */
 package com.asofterspace.metaPlayer;
 
-import com.asofterspace.toolbox.io.Record;
+import com.asofterspace.toolbox.utils.Record;
 
 
 public class Song {
