@@ -2,8 +2,11 @@
  * Unlicensed code created by A Softer Space, 2019
  * www.asofterspace.com/licenses/unlicense.txt
  */
-package com.asofterspace.metaPlayer;
+package com.asofterspace.krassGui;
 
+import com.asofterspace.krassGui.KrassGui;
+import com.asofterspace.krassGui.PlayerCtrl;
+import com.asofterspace.krassGui.SongCtrl;
 import com.asofterspace.toolbox.configuration.ConfigFile;
 import com.asofterspace.toolbox.io.JSON;
 import com.asofterspace.toolbox.io.JsonParseException;
@@ -12,9 +15,9 @@ import com.asofterspace.toolbox.Utils;
 import javax.swing.SwingUtilities;
 
 
-public class Main {
+public class KrassGui {
 
-	public final static String PROGRAM_TITLE = "MetaPlayer";
+	public final static String PROGRAM_TITLE = "KrassGui";
 	public final static String VERSION_NUMBER = "0.0.0.1(" + Utils.TOOLBOX_VERSION_NUMBER + ")";
 	public final static String VERSION_DATE = "25. September 2019";
 

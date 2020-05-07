@@ -2,7 +2,7 @@
  * Unlicensed code created by A Softer Space, 2019
  * www.asofterspace.com/licenses/unlicense.txt
  */
-package com.asofterspace.metaPlayer;
+package com.asofterspace.krassGui;
 
 import com.asofterspace.toolbox.io.JSON;
 import com.asofterspace.toolbox.utils.Record;

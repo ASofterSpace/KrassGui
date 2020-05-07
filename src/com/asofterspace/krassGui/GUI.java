@@ -2,7 +2,7 @@
  * Unlicensed code created by A Softer Space, 2019
  * www.asofterspace.com/licenses/unlicense.txt
  */
-package com.asofterspace.metaPlayer;
+package com.asofterspace.krassGui;
 
 import com.asofterspace.toolbox.configuration.ConfigFile;
 import com.asofterspace.toolbox.gui.Arrangement;
@@ -19,14 +19,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.GridBagLayout;
 import java.awt.Point;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -187,8 +182,8 @@ public class GUI extends MainWindow {
 		about.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String aboutMessage = "This is the " + Main.PROGRAM_TITLE + ".\n" +
-					"Version: " + Main.VERSION_NUMBER + " (" + Main.VERSION_DATE + ")\n" +
+				String aboutMessage = "This is the " + Utils.getProgramTitle() + ".\n" +
+					"Version: " + Utils.getVersionNumber() + " (" + Utils.getVersionDate() + ")\n" +
 					"Brought to you by: A Softer Space";
 				JOptionPane.showMessageDialog(mainFrame, aboutMessage, "About", JOptionPane.INFORMATION_MESSAGE);
 			}
@@ -412,7 +407,7 @@ public class GUI extends MainWindow {
 	}
 
 	private void refreshTitleBar() {
-		mainFrame.setTitle(Main.PROGRAM_TITLE);
+		mainFrame.setTitle(Utils.getProgramTitle());
 	}
 
 	private void setCurrentlyPlayedSong(Song song) {
