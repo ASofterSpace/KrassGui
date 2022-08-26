@@ -34,7 +34,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
@@ -49,9 +48,8 @@ public class GUI extends MainWindow {
 	private final static String CONFIG_KEY_TOP = "mainFrameTop";
 
 	private PlayerCtrl playerCtrl;
-	private SongCtrl songCtrl;
 
-	private Song currentlyPlayedSong;
+	private SongCtrl songCtrl;
 
 	private JPanel mainPanelRight;
 
@@ -62,8 +60,6 @@ public class GUI extends MainWindow {
 
 	private ConfigFile configuration;
 	private JList<String> songListComponent;
-	private JPopupMenu songListPopup;
-	private String[] strSongs;
 	private JScrollPane songListScroller;
 
 
@@ -128,8 +124,6 @@ public class GUI extends MainWindow {
 				});
 			}
 		});
-
-		regenerateSongList();
 	}
 
 	private JMenuBar createMenu(JFrame parent) {
@@ -329,89 +323,8 @@ public class GUI extends MainWindow {
 		return mainPanel;
 	}
 
-	private void showSearchBar() {
-
-		searchPanel.setVisible(true);
-
-		searchField.requestFocus();
-	}
-
-
-
-	/**
-	 * Regenerate the file list on the left hand side based on the songCtrl.getSongs() list,
-	 * and (if at least one file exists), select and open the current tab or, if it
-	 * is null, the lastly added one
-	 */
-	public void regenerateSongList() {
-
-		// if there is no last shown tab...
-		if (currentlyPlayedSong == null) {
-			// ... show some random tab explicitly - this is fun, and the tabbed layout otherwise shows it anyway, so may as well...
-			if (songCtrl.getSongs().size() > 0) {
-				setCurrentlyPlayedSong(songCtrl.getSongs().get(0));
-			}
-		}
-
-		/*
-		Collections.sort(songCtrl.getSongs(), new Comparator<Song>() {
-			public int compare(Song a, Song b) {
-				return a.getFilePath().toLowerCase().compareTo(b.getFilePath().toLowerCase());
-			}
-		});
-		*/
-
-		strSongs = new String[songCtrl.getSongs().size()];
-
-		int i = 0;
-
-		for (Song song : songCtrl.getSongs()) {
-			strSongs[i] = song.toString();
-			if (song.equals(currentlyPlayedSong)) {
-				strSongs[i] = ">> " + strSongs[i] + " <<";
-			}
-			i++;
-		}
-
-		songListComponent.setListData(strSongs);
-
-		// if there still is no last shown tab (e.g. we just deleted the very last one)...
-		if (currentlyPlayedSong == null) {
-			// ... then we do not need to show or highlight any ;)
-			return;
-		}
-
-		/*
-		// show the last shown tab
-		showTab(currentlyPlayedSong);
-		*/
-
-		highlightTabInLeftListOrTree(currentlyPlayedSong);
-	}
-
-	public void highlightTabInLeftListOrTree(final Song song) {
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				// highlight tab the list
-				int i = 0;
-				for (Song cur : songCtrl.getSongs()) {
-					if (song.equals(cur)) {
-						songListComponent.setSelectedIndex(i);
-						break;
-					}
-					i++;
-				}
-			}
-		});
-	}
-
 	private void refreshTitleBar() {
 		mainFrame.setTitle(Utils.getProgramTitle());
-	}
-
-	private void setCurrentlyPlayedSong(Song song) {
-		currentlyPlayedSong = song;
 	}
 
 }
